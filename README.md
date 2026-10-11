@@ -38,7 +38,8 @@ agent_events: append-only trace of every run (run_start / tool_call / llm_call /
 | Scout | **Stub.** Inserts placeholder `sourced_items` for empty roles. No real sourcing yet |
 | Stylist | Heuristic (newest active item per role). No embeddings or LLM yet |
 | Per-user auth (Firebase), rate limiting, CORS | Not implemented |
-| Vector search / Voyage embeddings | Not implemented (key verified, see below) |
+| Trend library (vision descriptions, embeddings, vector search, review) | Built and verified for embeddings/search; Claude describe step untested live; agents not yet wired to it |
+| Vector search over **inventory** products | Not implemented |
 | MongoDB Agent Engine / Raindrop deployment | Not implemented |
 | Android app integration | Not started (contract documented below) |
 | Tests | Unit tests pass; integration tests are gated behind `RUN_DB_TESTS=1` |
@@ -76,7 +77,7 @@ See `.env.example`.
 | `API_AUTH_TOKEN` | yes for `bun run serve` | Bearer token (>= 24 chars) required on every route except `/health`. Server refuses to start without it. Generate with `openssl rand -hex 32` |
 | `PORT` | no (`8080`) | API port |
 
-Planned (not yet read by code): `ATLAS_MODEL_API_KEY` (Voyage embeddings via `https://ai.mongodb.com/v1/embeddings`, model `voyage-4-large`, verified working), ElevenLabs and AWS keys.
+Trend library only: `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL`, `ATLAS_MODEL_API_KEY`, `EMBED_MODEL`, `EMBED_DIMENSIONS` (see the Trend library section). Planned (not yet read by code): ElevenLabs and AWS keys.
 
 ## Repository layout
 
@@ -158,6 +159,61 @@ curl -X POST localhost:8080/v1/tenants/racksavant-dev/tasks/<taskId>/decision \
 `kind` is `inventory` or `sourced`. `tryon_ready: false` means no image; skip or hide the item. Seed image URLs are placeholders (`img.example.com`), so real images are required before a true try-on test.
 
 Android side (repo `RackSavant/racksavant-android`, branch `feat/gemini-tryon`): `TryOnFragment` -> `TryOnViewModel` -> `GeminiTryOnRepository` currently take a garment image from camera/gallery. Integration means fetching `garment_image_url` as a bitmap and passing it into the same garment input. `Listing` fields map onto `products` via `src/api/mapper.ts`.
+
+## Trend library ("base pairs")
+
+Curated looks the agents retrieve from and learn from. Each full-outfit image is described by **Claude vision** in a fixed vocabulary, embedded with **Voyage (voyage-4-large)** through Atlas, and searched with **Atlas Vector Search**.
+
+```
+images + manifest -> Claude vision -> validate (src/trends/vocab.ts) -> Voyage embed
+   -> trend_looks + trend_garments (pending_review) -> human review -> approved
+   -> agents: searchTrendGarments() / trendLooksForIntent()   (approved only)
+```
+
+| Piece | Where |
+|---|---|
+| Collections + indexes | `trend_looks` (one per outfit image), `trend_garments` (one per piece; the retrieval unit) in `src/data/schema.ts` |
+| Controlled vocabulary + validation | `src/trends/vocab.ts` (roles, seasons, licenses; rejects short or malformed descriptions) |
+| Model clients | `src/trends/clients.ts` (Claude vision, Voyage embeddings, 429 backoff) |
+| Pure doc builders | `src/trends/ingest-core.ts` |
+| Agent retrieval | `src/trends/search.ts` |
+| CLIs | `trends:index`, `trends:ingest`, `trends:review` |
+
+Each garment stores structured facets (role, silhouette, fit, length, colors, pattern, fabric, details, aesthetics, occasions, seasons, `pairs_with`) plus a 2 to 4 sentence description. The exact text embedded is saved as `embedding_text`. Filters on `tenant_id`, `role` and `review_status` are part of the vector index.
+
+### Run it
+
+```bash
+# .env needs ANTHROPIC_API_KEY and ATLAS_MODEL_API_KEY (see .env.example)
+bun run db:init                  # creates trend_looks / trend_garments (idempotent)
+bun run trends:index             # Atlas vector index (1024 dims, cosine); wait for READY in Atlas
+cp scripts/seeds/trend-manifest.example.json my-looks.json   # list images + license + credit
+bun run trends:ingest --file my-looks.json --tenant racksavant-dev --dry-run   # validate only, no API calls
+bun run trends:ingest --file my-looks.json --tenant racksavant-dev             # describe + embed + store
+bun run trends:review --tenant racksavant-dev                                  # read what the model wrote
+bun run trends:review --tenant racksavant-dev --approve <look_id>              # or --reject / --approve-all
+```
+
+Ingest is idempotent (deterministic `look_id` from tenant + image). Reruns skip existing looks. `--redescribe` only rewrites looks still `pending_review`. It exits non-zero if any look failed and prints a JSON report (`--report path`). Images must be JPEG, PNG, WebP or GIF, 5 MB or smaller, as a local path or an https URL.
+
+### Using it from agents
+
+```ts
+import { searchTrendGarments, trendLooksForIntent } from "./src/trends/search";
+const looks = await trendLooksForIntent(db, tenantId, "smart casual dinner");        // base pairs: whole looks + their pieces
+const coats = await searchTrendGarments(db, tenantId, "oversized camel coat", { role: "outerwear" });
+```
+
+Suggested wiring (not done yet, see roadmap): the stylist calls `trendLooksForIntent` and uses the pairings as templates for each slot, then fills slots from inventory; the scout uses the nearest `description` as the external search query for gap roles. Emit a `tool_call` agent event for each retrieval. When a human approves an outfit, write it back as a trend look with `source.type: "approved_outfit"` so the library learns.
+
+### Gotchas
+
+- **Rights.** `source.license` is required (`owned`, `licensed`, `public_web_demo`). `public_web_demo` images are for demos only. Use owned or licensed images in production.
+- **Review gate.** Model output starts `pending_review` and agents never see it until a human approves it. Spot-check descriptions: bad tags poison retrieval.
+- **Rate limits.** Voyage is 3 requests/min and 10K tokens/min until a payment method is added in the Atlas billing page. The client backs off on 429, but large batches will be slow until then.
+- **Dimensions.** `EMBED_DIMENSIONS` must match the vector index. Changing it means a new index and a re-embed (`--redescribe` only touches pending looks).
+- **Vector index is async.** After `trends:index`, queries return nothing until the index is queryable.
+- **Not run live:** the Claude vision call. I had no `ANTHROPIC_API_KEY`, so the describe step is covered only by unit tests on the validator and builders. Embeddings and vector search were verified against live Atlas (`RUN_DB_TESTS=1 bun test tests/trends.integration`).
 
 ## Safety rules (keep these)
 

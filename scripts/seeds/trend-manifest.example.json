@@ -1,0 +1,8 @@
+[
+  {
+    "image": "./trend-images/example-look-01.jpg",
+    "season": "fall",
+    "notes": "Replace with a real image. Every entry needs license + credit or url.",
+    "source": { "license": "public_web_demo", "credit": "photographer / publication", "url": "https://example.com/source-page" }
+  }
+]

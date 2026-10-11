@@ -310,3 +310,75 @@ export const schema: Array<{ name: string; validator: object; indexes: IndexDef[
   { name: COLLECTIONS.tasks,           validator: tasksValidator,           indexes: taskIndexes },
   { name: COLLECTIONS.agentEvents,     validator: agentEventsValidator,     indexes: agentEventIndexes },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Trend library — curated looks agents retrieve from ("base pairs")    */
+/* ------------------------------------------------------------------ */
+
+export const TREND_COLLECTIONS = { looks: "trend_looks", garments: "trend_garments" } as const;
+export const TREND_VECTOR_INDEX = "trend_garments_vector";
+export const TREND_REVIEW_STATUSES = ["pending_review", "approved", "rejected"] as const;
+
+export const trendLooksValidator = {
+  $jsonSchema: {
+    bsonType: "object",
+    title: "trend_looks — one full-outfit reference image + its structured description",
+    required: ["tenant_id", "look_id", "image", "source", "summary", "garment_ids", "review_status", "schema_version", "created_at", "updated_at"],
+    properties: {
+      tenant_id: { bsonType: "string", minLength: 1 },
+      look_id: { bsonType: "string", minLength: 1 },
+      image: { bsonType: "object", required: ["ref", "sha256"], properties: { ref: { bsonType: "string" }, sha256: { bsonType: "string" } } },
+      source: { bsonType: "object", required: ["license"], properties: { type: { bsonType: "string" }, url: { bsonType: "string" }, credit: { bsonType: "string" }, license: { enum: ["owned", "licensed", "public_web_demo"] } } },
+      summary: { bsonType: "string" },
+      aesthetics: { bsonType: "array", items: { bsonType: "string" } },
+      occasions: { bsonType: "array", items: { bsonType: "string" } },
+      seasons: { bsonType: "array", items: { bsonType: "string" } },
+      garment_ids: { bsonType: "array", items: { bsonType: "string" } },
+      review_status: { enum: [...TREND_REVIEW_STATUSES] },
+      embedding: { bsonType: "array", description: "look-level vector" },
+      model: { bsonType: "object", description: "provenance of the descriptions/embeddings" },
+      schema_version: { bsonType: "int" },
+      created_at: { bsonType: "date" },
+      updated_at: { bsonType: "date" },
+    },
+  },
+};
+
+export const trendGarmentsValidator = {
+  $jsonSchema: {
+    bsonType: "object",
+    title: "trend_garments — one garment from a look; the unit agents retrieve by semantic search",
+    required: ["tenant_id", "garment_id", "look_id", "role", "name", "description", "colors", "embedding_text", "review_status", "schema_version", "created_at", "updated_at"],
+    properties: {
+      tenant_id: { bsonType: "string", minLength: 1 },
+      garment_id: { bsonType: "string", minLength: 1 },
+      look_id: { bsonType: "string", minLength: 1 },
+      role: { enum: ["tops", "bottoms", "shoes", "outerwear", "accessories", "dresses"] },
+      name: { bsonType: "string" },
+      description: { bsonType: "string" },
+      colors: { bsonType: "array", items: { bsonType: "string" } },
+      embedding_text: { bsonType: "string", description: "exact text that was embedded" },
+      embedding: { bsonType: "array" },
+      review_status: { enum: [...TREND_REVIEW_STATUSES] },
+      schema_version: { bsonType: "int" },
+      created_at: { bsonType: "date" },
+      updated_at: { bsonType: "date" },
+    },
+  },
+};
+
+export const trendLookIndexes: IndexDef[] = [
+  { keys: { tenant_id: 1, look_id: 1 }, options: { unique: true, name: "uq_tenant_look" } },
+  { keys: { tenant_id: 1, "image.sha256": 1 }, options: { name: "ix_tenant_look_image" } },
+  { keys: { tenant_id: 1, review_status: 1, created_at: -1 }, options: { name: "ix_tenant_look_review" } },
+];
+export const trendGarmentIndexes: IndexDef[] = [
+  { keys: { tenant_id: 1, garment_id: 1 }, options: { unique: true, name: "uq_tenant_trend_garment" } },
+  { keys: { tenant_id: 1, look_id: 1 }, options: { name: "ix_tenant_garment_look" } },
+  { keys: { tenant_id: 1, role: 1, review_status: 1 }, options: { name: "ix_tenant_garment_role" } },
+];
+
+schema.push(
+  { name: TREND_COLLECTIONS.looks, validator: trendLooksValidator, indexes: trendLookIndexes },
+  { name: TREND_COLLECTIONS.garments, validator: trendGarmentsValidator, indexes: trendGarmentIndexes },
+);
