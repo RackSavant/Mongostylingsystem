@@ -85,7 +85,7 @@ for (const [index, raw] of payloads.entries()) {
     ],
   });
 
-  const plan = planImport(existing, doc, { update: UPDATE });
+  const plan = planImport(existing as { product_id: string } | null, doc, { update: UPDATE });
   report.product_ids.push(doc.product_id);
 
   if (plan.op === "insert") {

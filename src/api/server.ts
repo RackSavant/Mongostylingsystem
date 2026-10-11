@@ -10,8 +10,11 @@
  *   POST /v1/tenants/:t/tasks/:id/decision  { decision, decided_by, notes? }
  *   GET  /v1/tenants/:t/agent-events?run_id= -> observability feed
  *
- * Env: MONGODB_URI, MONGODB_DB, PORT (default 8080)
+ * Auth: every route except /health requires `Authorization: Bearer $API_AUTH_TOKEN`.
+ *       The server refuses to start without API_AUTH_TOKEN (fail closed).
+ * Env: MONGODB_URI, MONGODB_DB, API_AUTH_TOKEN, PORT (default 8080)
  */
+import { timingSafeEqual } from "node:crypto";
 import type { Db } from "mongodb";
 import { getDb, closeMongo } from "../data/mongo";
 import { COLLECTIONS } from "../data/schema";
@@ -24,7 +27,27 @@ const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } });
 const err = (msg: string, status = 400) => json({ error: msg }, status);
 
-export function createHandler(db: Db) {
+const MAX_BODY_BYTES = 64 * 1024;
+const TENANT_RE = /^[A-Za-z0-9_-]{1,64}$/;
+
+class HttpError extends Error {
+  constructor(public status: number, msg: string) { super(msg); }
+}
+
+function authorized(req: Request, token: string): boolean {
+  const h = req.headers.get("authorization") ?? "";
+  const a = Buffer.from(h.startsWith("Bearer ") ? h.slice(7) : "");
+  const b = Buffer.from(token);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
+async function readJson<T>(req: Request): Promise<T> {
+  const text = await req.text();
+  if (text.length > MAX_BODY_BYTES) throw new HttpError(413, "body too large");
+  try { return JSON.parse(text) as T; } catch { throw new HttpError(400, "invalid JSON body"); }
+}
+
+export function createHandler(db: Db, authToken: string) {
   return async function handle(req: Request): Promise<Response> {
     const url = new URL(req.url);
     const m = url.pathname.match(/^\/v1\/tenants\/([^/]+)(\/.*)?$/);
@@ -33,7 +56,8 @@ export function createHandler(db: Db) {
 
     try {
       if (req.method === "GET" && url.pathname === "/health") return json({ ok: true, db: db.databaseName });
-      if (!tenantId) return err("not found", 404);
+      if (!authorized(req, authToken)) return json({ error: "unauthorized" }, 401);
+      if (!tenantId || !TENANT_RE.test(tenantId)) return err("not found", 404);
 
       // inventory browse
       if (req.method === "GET" && rest === "/products") {
@@ -46,7 +70,7 @@ export function createHandler(db: Db) {
 
       // app listing -> inventory product (idempotent via source external_id)
       if (req.method === "POST" && rest === "/listings") {
-        const listing = (await req.json()) as AndroidListing;
+        const listing = (await readJson<any>(req)) as AndroidListing;
         if (!listing?.listingId || !listing.title) return err("listing.listingId and listing.title required");
         const payload = listingToPayload(listing, tenantId);
         const v = validateProductPayload(payload);
@@ -62,7 +86,7 @@ export function createHandler(db: Db) {
 
       // run the workforce: scout -> stylist -> outfit pending human review
       if (req.method === "POST" && rest === "/style") {
-        const body = (await req.json()) as { shopper_id?: string; intent?: string };
+        const body = (await readJson<any>(req)) as { shopper_id?: string; intent?: string };
         if (!body.shopper_id || !body.intent) return err("shopper_id and intent required");
         const coverage = await scout({ db, tenantId, shopperId: body.shopper_id, intent: body.intent });
         const result = await stylist({ db, tenantId, shopperId: body.shopper_id, intent: body.intent });
@@ -97,7 +121,7 @@ export function createHandler(db: Db) {
       // human decision
       const taskMatch = rest.match(/^\/tasks\/([^/]+)\/decision$/);
       if (req.method === "POST" && taskMatch) {
-        const body = (await req.json()) as { decision?: string; decided_by?: string; notes?: string };
+        const body = (await readJson<any>(req)) as { decision?: string; decided_by?: string; notes?: string };
         if (!body.decision || !body.decided_by) return err("decision and decided_by required");
         if (!["approved", "rejected", "done"].includes(body.decision)) return err("decision must be approved|rejected|done");
         const result = await decideTask({
@@ -118,14 +142,21 @@ export function createHandler(db: Db) {
 
       return err("not found", 404);
     } catch (e) {
-      return err(e instanceof Error ? e.message : "internal error", 500);
+      if (e instanceof HttpError) return err(e.message, e.status);
+      console.error("request failed:", e instanceof Error ? e.message : "unknown");
+      return err("internal error", 500);
     }
   };
 }
 
 if (import.meta.main) {
+  const authToken = process.env.API_AUTH_TOKEN;
+  if (!authToken || authToken.length < 24) {
+    console.error("API_AUTH_TOKEN must be set (>= 24 chars). Refusing to start.");
+    process.exit(1);
+  }
   const db = await getDb();
   const port = Number(process.env.PORT ?? 8080);
-  Bun.serve({ port, fetch: createHandler(db) });
+  Bun.serve({ port, fetch: createHandler(db, authToken), maxRequestBodySize: MAX_BODY_BYTES });
   console.log(`racksavant styling API on :${port} (db: ${db.databaseName})`);
 }

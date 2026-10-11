@@ -34,7 +34,7 @@ agent_events: append-only trace of every run (run_start / tool_call / llm_call /
 | Atlas schema, validators, indexes (7 collections) | Done, provisioned, tested |
 | Idempotent importer (dry-run / update / report) | Done, tested |
 | Workforce runner, HITL tasks, decisions, promotion | Done, verified end to end on live Atlas |
-| REST API for Android | Done, **unauthenticated** (see Roadmap) |
+| REST API for Android | Done. Static bearer-token auth (`API_AUTH_TOKEN`), 64 KB body cap, tenant-id validation, no error-detail leaks. Per-user auth still to do (see Roadmap) |
 | Scout | **Stub.** Inserts placeholder `sourced_items` for empty roles. No real sourcing yet |
 | Stylist | Heuristic (newest active item per role). No embeddings or LLM yet |
 | Auth, rate limiting, CORS | Not implemented |
@@ -73,6 +73,7 @@ See `.env.example`.
 | `MONGODB_DB` | no (`needitnow`) | App database |
 | `MONGODB_TEST_DB` | no (`needitnow_test`) | Isolated DB for integration tests |
 | `RUN_DB_TESTS` | no | Set `1` to run live-DB tests |
+| `API_AUTH_TOKEN` | yes for `bun run serve` | Bearer token (>= 24 chars) required on every route except `/health`. Server refuses to start without it. Generate with `openssl rand -hex 32` |
 | `PORT` | no (`8080`) | API port |
 
 Planned (not yet read by code): `ATLAS_MODEL_API_KEY` (Voyage embeddings via `https://ai.mongodb.com/v1/embeddings`, model `voyage-4-large`, verified working), API auth secret, ElevenLabs and AWS keys.
@@ -170,7 +171,7 @@ Android side (repo `RackSavant/racksavant-android`, branch `feat/gemini-tryon`):
 
 Highest value first:
 
-1. **Auth.** API is open. Verify Firebase ID tokens (Android uses Firebase Auth) or a shared service secret; map the token to `tenant_id` rather than trusting the URL. Add CORS and rate limits.
+1. **Per-user auth.** The API uses one shared bearer token (`API_AUTH_TOKEN`), which is fine for server-to-server but must not ship inside the Android APK. Verify Firebase ID tokens (Android uses Firebase Auth) and map the token to `tenant_id` and shopper identity instead of trusting the URL and `shopper_id`. Stylist-only routes (`/tasks/*/decision`) need a stylist role. Add CORS policy, rate limits and TLS termination.
 2. **Real scout.** Replace the stub in `agents.ts` with an LLM/tool-calling agent that finds real external items (url, retailer, price, image) and writes `sourced_items`. Emit `tool_call` / `llm_call` events. Keep the candidate -> human intake -> product contract.
 3. **Embeddings and ranking.** Embed products and shopper signals with `voyage-4-large` (`ATLAS_MODEL_API_KEY`), add an Atlas Vector Search index, retrieve then rerank (`/v1/rerank`) in the stylist instead of "newest per role".
 4. **Real images.** Replace placeholder URLs with S3 (or Raindrop SmartBuckets) URLs reachable by Android and Gemini.
