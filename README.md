@@ -37,7 +37,7 @@ agent_events: append-only trace of every run (run_start / tool_call / llm_call /
 | REST API for Android | Done. Static bearer-token auth (`API_AUTH_TOKEN`), 64 KB body cap, tenant-id validation, no error-detail leaks. Per-user auth still to do (see Roadmap) |
 | Scout | **Stub.** Inserts placeholder `sourced_items` for empty roles. No real sourcing yet |
 | Stylist | Heuristic (newest active item per role). No embeddings or LLM yet |
-| Auth, rate limiting, CORS | Not implemented |
+| Per-user auth (Firebase), rate limiting, CORS | Not implemented |
 | Vector search / Voyage embeddings | Not implemented (key verified, see below) |
 | MongoDB Agent Engine / Raindrop deployment | Not implemented |
 | Android app integration | Not started (contract documented below) |
@@ -76,7 +76,7 @@ See `.env.example`.
 | `API_AUTH_TOKEN` | yes for `bun run serve` | Bearer token (>= 24 chars) required on every route except `/health`. Server refuses to start without it. Generate with `openssl rand -hex 32` |
 | `PORT` | no (`8080`) | API port |
 
-Planned (not yet read by code): `ATLAS_MODEL_API_KEY` (Voyage embeddings via `https://ai.mongodb.com/v1/embeddings`, model `voyage-4-large`, verified working), API auth secret, ElevenLabs and AWS keys.
+Planned (not yet read by code): `ATLAS_MODEL_API_KEY` (Voyage embeddings via `https://ai.mongodb.com/v1/embeddings`, model `voyage-4-large`, verified working), ElevenLabs and AWS keys.
 
 ## Repository layout
 
