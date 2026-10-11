@@ -7,7 +7,8 @@
     "db:init": "bun run scripts/init-db.ts",
     "db:import": "bun run scripts/import-products.ts",
     "test": "bun test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "serve": "bun run src/api/server.ts"
   },
   "dependencies": {
     "mongodb": "^7.7.0"

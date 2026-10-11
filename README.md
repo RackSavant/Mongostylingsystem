@@ -51,3 +51,26 @@ Import files are JSON arrays of product payloads (see `scripts/seeds/products.sy
 **Safety rules baked in:** products dedupe on `(tenant_id, product_id)` and `(tenant_id, source.system, source.external_id)`; existing rows are skipped unless `--update`; nothing is ever deleted; identity and provenance fields are never overwritten.
 
 Synthetic seed data only until the real catalog import is reviewed.
+
+## API (racksavant-android)
+
+`bun run serve` → `http://localhost:8080` (`PORT` to override). All routes are tenant-scoped: `/v1/tenants/:tenantId/...`
+
+| Route | Purpose |
+|---|---|
+| `GET /health` | liveness + db name |
+| `GET .../products?status=&category=` | inventory browse |
+| `POST .../listings` | bridge an app `Listing` (Firestore shape) into `products` — idempotent on `listingId` |
+| `POST .../style` `{shopper_id, intent}` | runs scout → stylist → returns outfit `pending_review` |
+| `GET .../outfits/:id` | outfit detail + `tryon_items[]` (resolved `garment_image_url`, `tryon_ready`) |
+| `GET .../tasks?status=open` | HITL queue, priority-ordered — stylist console |
+| `POST .../tasks/:id/decision` `{decision, decided_by, notes?}` | approve/reject → outfit status or source_intake promotion |
+| `GET .../agent-events?run_id=&agent=` | observability feed |
+
+### Try-on integration contract
+
+`GET .../outfits/:id` returns `tryon_items[]` — one per role (`tops`/`bottoms`/`shoes`/`outerwear`/`accessories`), each with `kind` (`inventory`|`sourced`), `ref`, `title`, `brand`, `price_cents`, and **`garment_image_url`**. Feed that URL into the existing garment slot in `TryOnFragment`/`GeminiTryOnRepository`; `tryon_ready: false` means the item lacks an image and should be skipped or hidden.
+
+### Workforce loop
+
+`POST /style` → **scout** (coverage + sourced candidates for gaps) → **stylist** (composes outfit from inventory ∪ candidates) → **task** `outfit_review` opens → human approves → outfit `approved`. `source_intake` approval promotes `sourced_items` into `products` via received/listed events — the catalog builds itself. Every run writes `agent_events` (run_start/tool_call/decision/escalate/run_end) for observability.
