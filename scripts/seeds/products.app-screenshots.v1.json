@@ -1,0 +1,495 @@
+[
+  {
+    "title": "Pale Yellow Faux Leat…",
+    "category": "outerwear",
+    "subcategory": "jackets",
+    "price_cents": 3200,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-764e3ddaa1b3"
+    }
+  },
+  {
+    "title": "Vintage-Style Floral M…",
+    "category": "accessories",
+    "subcategory": "jewelry",
+    "price_cents": 1500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-42de4a4ff7fd"
+    }
+  },
+  {
+    "title": "Assorted Fashion Jew…",
+    "category": "accessories",
+    "subcategory": "jewelry",
+    "price_cents": 1500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-b857b1275cd9"
+    }
+  },
+  {
+    "title": "Pink Thread-Wrapped …",
+    "category": "accessories",
+    "subcategory": "jewelry",
+    "price_cents": 800,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-172597a8d2f2"
+    }
+  },
+  {
+    "title": "Gold-Tone Interlockin…",
+    "category": "accessories",
+    "subcategory": "jewelry",
+    "price_cents": 1500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-acb09657bd69"
+    }
+  },
+  {
+    "title": "Reebok Classic Suede…",
+    "brand": "Reebok",
+    "category": "shoes",
+    "subcategory": "sneakers",
+    "price_cents": 4500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-021414f3bfaa"
+    }
+  },
+  {
+    "title": "Hurley Men's Gray Plai…",
+    "brand": "Hurley",
+    "category": "outerwear",
+    "subcategory": "hoodies",
+    "price_cents": 2500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-4e4c9b3363e1"
+    }
+  },
+  {
+    "title": "American Apparel Silv…",
+    "brand": "American Apparel",
+    "category": "outerwear",
+    "subcategory": "jackets",
+    "price_cents": 3000,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-f282d5280194"
+    }
+  },
+  {
+    "title": "Silver Satin Bomber Zi…",
+    "category": "outerwear",
+    "subcategory": "jackets",
+    "price_cents": 2500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-67fc520dc62a"
+    }
+  },
+  {
+    "title": "Vintage Maroon and B…",
+    "category": "outerwear",
+    "subcategory": "jackets",
+    "price_cents": 3500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-9b8491209ac1"
+    }
+  },
+  {
+    "title": "Black Velvet Military S…",
+    "category": "outerwear",
+    "subcategory": "jackets",
+    "price_cents": 3500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-2bb6904ab58e"
+    }
+  },
+  {
+    "title": "Vintage Purple Zip-Up …",
+    "category": "outerwear",
+    "subcategory": "jackets",
+    "price_cents": 1800,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-f16d979b2593"
+    }
+  },
+  {
+    "title": "Jessica Simpson Tan …",
+    "brand": "Jessica Simpson",
+    "category": "shoes",
+    "subcategory": "heels",
+    "price_cents": 2500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-0023164b882f"
+    }
+  },
+  {
+    "title": "Vintage Style Brown L…",
+    "category": "shoes",
+    "subcategory": "boots",
+    "price_cents": 3500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-683362bfdc49"
+    }
+  },
+  {
+    "title": "Madison by ShoeDazzl…",
+    "brand": "Madison by ShoeDazzle",
+    "category": "shoes",
+    "subcategory": "heels",
+    "price_cents": 2500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-4e33ff084e90"
+    }
+  },
+  {
+    "title": "Vintage Tan Leather L…",
+    "category": "shoes",
+    "subcategory": "heels",
+    "price_cents": 2200,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-950267248897"
+    }
+  },
+  {
+    "title": "Christian Louboutin N…",
+    "brand": "Christian Louboutin",
+    "category": "shoes",
+    "subcategory": "heels",
+    "price_cents": 15000,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-4b16a4f674b9"
+    }
+  },
+  {
+    "title": "Tan Leather Woven Ca…",
+    "category": "shoes",
+    "subcategory": "sandals",
+    "price_cents": 1500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-2a95f316d258"
+    }
+  },
+  {
+    "title": "Wild Pair Beige Suede …",
+    "brand": "Wild Pair",
+    "category": "shoes",
+    "subcategory": "heels",
+    "price_cents": 2200,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-d34b4040b48b"
+    }
+  },
+  {
+    "title": "ALDO Nude Suede Poi…",
+    "brand": "ALDO",
+    "category": "shoes",
+    "subcategory": "heels",
+    "price_cents": 2500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-3e1ad66840f7"
+    }
+  },
+  {
+    "title": "Via Spiga Black Patent…",
+    "brand": "Via Spiga",
+    "category": "shoes",
+    "subcategory": "loafers",
+    "price_cents": 4500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-7d6e643718ca"
+    }
+  },
+  {
+    "title": "Women's Blue Palm Tr…",
+    "category": "tops",
+    "subcategory": "tees",
+    "price_cents": 1200,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-b07e22437094"
+    }
+  },
+  {
+    "title": "SENREVE Maestra Ba…",
+    "brand": "SENREVE",
+    "category": "accessories",
+    "subcategory": "bags",
+    "price_cents": 85000,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-6bd874269b1f"
+    }
+  },
+  {
+    "title": "Nike Aqua Rift Split-T…",
+    "brand": "Nike",
+    "category": "shoes",
+    "subcategory": "sandals",
+    "price_cents": 6500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-7413cbb442b2"
+    }
+  },
+  {
+    "title": "Nick Graham Blue Win…",
+    "brand": "Nick Graham",
+    "category": "outerwear",
+    "subcategory": "blazers",
+    "price_cents": 14500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-e956ab521eee"
+    }
+  },
+  {
+    "title": "Databricks Branded Bl…",
+    "category": "outerwear",
+    "subcategory": "jackets",
+    "price_cents": 3500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-6727101c0d97"
+    }
+  },
+  {
+    "title": "Black Embroidered Flo…",
+    "category": "tops",
+    "subcategory": "blouses",
+    "price_cents": 3500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-e107bca9f93c"
+    }
+  },
+  {
+    "title": "Nude Pointed Toe Stra…",
+    "category": "shoes",
+    "subcategory": "heels",
+    "price_cents": 1500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-be7b0bb1db00"
+    }
+  },
+  {
+    "title": "Striped Button-Down …",
+    "category": "tops",
+    "subcategory": "shirts",
+    "price_cents": 1500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-b40aeb2e355f"
+    }
+  },
+  {
+    "title": "Minimalist Black Halte…",
+    "category": "tops",
+    "subcategory": "halter",
+    "price_cents": 1500,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-b2b0e07ea480"
+    }
+  },
+  {
+    "title": "Tropical Floral One-Sh…",
+    "category": "swimwear",
+    "subcategory": "one-piece",
+    "price_cents": 2800,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-b4c9c168b5c5"
+    }
+  },
+  {
+    "title": "Dr. Scholl's Yellow Tex…",
+    "brand": "Dr. Scholl's",
+    "category": "shoes",
+    "subcategory": "sandals",
+    "price_cents": 3000,
+    "currency": "USD",
+    "condition": "good",
+    "status": "draft",
+    "quantity": 1,
+    "source": {
+      "type": "resale",
+      "system": "racksavant-app-screenshots-v1",
+      "external_id": "ss-ca551ff2c361"
+    }
+  }
+]
