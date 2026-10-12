@@ -1,0 +1,389 @@
+{
+  "note": "Upscaled thumbnails: Lanczos x4 + light sharpen. No detail is added; source is ~180px.",
+  "items": [
+    {
+      "external_id": "ss-764e3ddaa1b3",
+      "title": "Pale Yellow Faux Leat…",
+      "from_screenshot": "1699",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-764e3ddaa1b3.orig.jpg",
+      "upscaled_x4": "ss-764e3ddaa1b3.x4.jpg"
+    },
+    {
+      "external_id": "ss-42de4a4ff7fd",
+      "title": "Vintage-Style Floral M…",
+      "from_screenshot": "1699",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-42de4a4ff7fd.orig.jpg",
+      "upscaled_x4": "ss-42de4a4ff7fd.x4.jpg"
+    },
+    {
+      "external_id": "ss-b857b1275cd9",
+      "title": "Assorted Fashion Jew…",
+      "from_screenshot": "1699",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-b857b1275cd9.orig.jpg",
+      "upscaled_x4": "ss-b857b1275cd9.x4.jpg"
+    },
+    {
+      "external_id": "ss-172597a8d2f2",
+      "title": "Pink Thread-Wrapped …",
+      "from_screenshot": "1699",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-172597a8d2f2.orig.jpg",
+      "upscaled_x4": "ss-172597a8d2f2.x4.jpg"
+    },
+    {
+      "external_id": "ss-acb09657bd69",
+      "title": "Gold-Tone Interlockin…",
+      "from_screenshot": "1699",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-acb09657bd69.orig.jpg",
+      "upscaled_x4": "ss-acb09657bd69.x4.jpg"
+    },
+    {
+      "external_id": "ss-021414f3bfaa",
+      "title": "Reebok Classic Suede…",
+      "from_screenshot": "1699",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-021414f3bfaa.orig.jpg",
+      "upscaled_x4": "ss-021414f3bfaa.x4.jpg"
+    },
+    {
+      "external_id": "ss-4e4c9b3363e1",
+      "title": "Hurley Men's Gray Plai…",
+      "from_screenshot": "1699",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-4e4c9b3363e1.orig.jpg",
+      "upscaled_x4": "ss-4e4c9b3363e1.x4.jpg"
+    },
+    {
+      "external_id": "ss-f282d5280194",
+      "title": "American Apparel Silv…",
+      "from_screenshot": "1701",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-f282d5280194.orig.jpg",
+      "upscaled_x4": "ss-f282d5280194.x4.jpg"
+    },
+    {
+      "external_id": "ss-67fc520dc62a",
+      "title": "Silver Satin Bomber Zi…",
+      "from_screenshot": "1701",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-67fc520dc62a.orig.jpg",
+      "upscaled_x4": "ss-67fc520dc62a.x4.jpg"
+    },
+    {
+      "external_id": "ss-9b8491209ac1",
+      "title": "Vintage Maroon and B…",
+      "from_screenshot": "1701",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-9b8491209ac1.orig.jpg",
+      "upscaled_x4": "ss-9b8491209ac1.x4.jpg"
+    },
+    {
+      "external_id": "ss-2bb6904ab58e",
+      "title": "Black Velvet Military S…",
+      "from_screenshot": "1701",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-2bb6904ab58e.orig.jpg",
+      "upscaled_x4": "ss-2bb6904ab58e.x4.jpg"
+    },
+    {
+      "external_id": "ss-f16d979b2593",
+      "title": "Vintage Purple Zip-Up …",
+      "from_screenshot": "1701",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-f16d979b2593.orig.jpg",
+      "upscaled_x4": "ss-f16d979b2593.x4.jpg"
+    },
+    {
+      "external_id": "ss-0023164b882f",
+      "title": "Jessica Simpson Tan …",
+      "from_screenshot": "1704",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-0023164b882f.orig.jpg",
+      "upscaled_x4": "ss-0023164b882f.x4.jpg"
+    },
+    {
+      "external_id": "ss-683362bfdc49",
+      "title": "Vintage Style Brown L…",
+      "from_screenshot": "1704",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-683362bfdc49.orig.jpg",
+      "upscaled_x4": "ss-683362bfdc49.x4.jpg"
+    },
+    {
+      "external_id": "ss-4e33ff084e90",
+      "title": "Madison by ShoeDazzl…",
+      "from_screenshot": "1704",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-4e33ff084e90.orig.jpg",
+      "upscaled_x4": "ss-4e33ff084e90.x4.jpg"
+    },
+    {
+      "external_id": "ss-950267248897",
+      "title": "Vintage Tan Leather L…",
+      "from_screenshot": "1704",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-950267248897.orig.jpg",
+      "upscaled_x4": "ss-950267248897.x4.jpg"
+    },
+    {
+      "external_id": "ss-4b16a4f674b9",
+      "title": "Christian Louboutin N…",
+      "from_screenshot": "1704",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-4b16a4f674b9.orig.jpg",
+      "upscaled_x4": "ss-4b16a4f674b9.x4.jpg"
+    },
+    {
+      "external_id": "ss-2a95f316d258",
+      "title": "Tan Leather Woven Ca…",
+      "from_screenshot": "1704",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-2a95f316d258.orig.jpg",
+      "upscaled_x4": "ss-2a95f316d258.x4.jpg"
+    },
+    {
+      "external_id": "ss-d34b4040b48b",
+      "title": "Wild Pair Beige Suede …",
+      "from_screenshot": "1704",
+      "source_px": [
+        184,
+        170
+      ],
+      "partial": false,
+      "original": "ss-d34b4040b48b.orig.jpg",
+      "upscaled_x4": "ss-d34b4040b48b.x4.jpg"
+    },
+    {
+      "external_id": "ss-3e1ad66840f7",
+      "title": "ALDO Nude Suede Poi…",
+      "from_screenshot": "1705",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-3e1ad66840f7.orig.jpg",
+      "upscaled_x4": "ss-3e1ad66840f7.x4.jpg"
+    },
+    {
+      "external_id": "ss-7d6e643718ca",
+      "title": "Via Spiga Black Patent…",
+      "from_screenshot": "1705",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-7d6e643718ca.orig.jpg",
+      "upscaled_x4": "ss-7d6e643718ca.x4.jpg"
+    },
+    {
+      "external_id": "ss-b07e22437094",
+      "title": "Women's Blue Palm Tr…",
+      "from_screenshot": "1705",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-b07e22437094.orig.jpg",
+      "upscaled_x4": "ss-b07e22437094.x4.jpg"
+    },
+    {
+      "external_id": "ss-6bd874269b1f",
+      "title": "SENREVE Maestra Ba…",
+      "from_screenshot": "1705",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-6bd874269b1f.orig.jpg",
+      "upscaled_x4": "ss-6bd874269b1f.x4.jpg"
+    },
+    {
+      "external_id": "ss-7413cbb442b2",
+      "title": "Nike Aqua Rift Split-T…",
+      "from_screenshot": "1705",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-7413cbb442b2.orig.jpg",
+      "upscaled_x4": "ss-7413cbb442b2.x4.jpg"
+    },
+    {
+      "external_id": "ss-e956ab521eee",
+      "title": "Nick Graham Blue Win…",
+      "from_screenshot": "1705",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-e956ab521eee.orig.jpg",
+      "upscaled_x4": "ss-e956ab521eee.x4.jpg"
+    },
+    {
+      "external_id": "ss-6727101c0d97",
+      "title": "Databricks Branded Bl…",
+      "from_screenshot": "1707",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-6727101c0d97.orig.jpg",
+      "upscaled_x4": "ss-6727101c0d97.x4.jpg"
+    },
+    {
+      "external_id": "ss-e107bca9f93c",
+      "title": "Black Embroidered Flo…",
+      "from_screenshot": "1707",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-e107bca9f93c.orig.jpg",
+      "upscaled_x4": "ss-e107bca9f93c.x4.jpg"
+    },
+    {
+      "external_id": "ss-be7b0bb1db00",
+      "title": "Nude Pointed Toe Stra…",
+      "from_screenshot": "1707",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-be7b0bb1db00.orig.jpg",
+      "upscaled_x4": "ss-be7b0bb1db00.x4.jpg"
+    },
+    {
+      "external_id": "ss-b40aeb2e355f",
+      "title": "Striped Button-Down …",
+      "from_screenshot": "1707",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-b40aeb2e355f.orig.jpg",
+      "upscaled_x4": "ss-b40aeb2e355f.x4.jpg"
+    },
+    {
+      "external_id": "ss-b2b0e07ea480",
+      "title": "Minimalist Black Halte…",
+      "from_screenshot": "1707",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-b2b0e07ea480.orig.jpg",
+      "upscaled_x4": "ss-b2b0e07ea480.x4.jpg"
+    },
+    {
+      "external_id": "ss-b4c9c168b5c5",
+      "title": "Tropical Floral One-Sh…",
+      "from_screenshot": "1707",
+      "source_px": [
+        184,
+        180
+      ],
+      "partial": false,
+      "original": "ss-b4c9c168b5c5.orig.jpg",
+      "upscaled_x4": "ss-b4c9c168b5c5.x4.jpg"
+    },
+    {
+      "external_id": "ss-ca551ff2c361",
+      "title": "Dr. Scholl's Yellow Tex…",
+      "from_screenshot": "1707",
+      "source_px": [
+        184,
+        143
+      ],
+      "partial": true,
+      "original": "ss-ca551ff2c361.orig.jpg",
+      "upscaled_x4": "ss-ca551ff2c361.x4.jpg"
+    }
+  ]
+}
